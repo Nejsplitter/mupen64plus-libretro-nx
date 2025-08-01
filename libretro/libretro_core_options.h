@@ -1455,6 +1455,9 @@ struct retro_core_option_v2_definition option_defs_us[] = {
             {"Auto", NULL},
             {"1500", NULL},
             {"2200", NULL},
+            {"4500", NULL},
+            {"10000", NULL},
+            {"20000", NULL},
             { NULL, NULL },
         },
         "Auto"
