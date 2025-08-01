@@ -1025,8 +1025,8 @@ static void update_variables(bool startup)
 	    
        if(current_rdp_type == RDP_PLUGIN_GLIDEN64 && EnableThreadedRenderer)
        {
-          unsigned poll_type_early      = 1; /* POLL_TYPE_EARLY */
-          environ_cb(RETRO_ENVIRONMENT_POLL_TYPE_OVERRIDE, &poll_type_early);
+          unsigned poll_type_late      = 1; /* POLL_TYPE_LATE */
+          environ_cb(RETRO_ENVIRONMENT_POLL_TYPE_OVERRIDE, &poll_type_late);
        }
 
        var.key = CORE_NAME "-BilinearMode";
