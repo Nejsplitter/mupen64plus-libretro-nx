@@ -1561,6 +1561,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL,
         "input",
         {
+            {"0", NULL},
             {"50", NULL},
             {"55", NULL},
             {"60", NULL},
