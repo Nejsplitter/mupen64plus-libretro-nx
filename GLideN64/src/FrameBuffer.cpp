@@ -1560,8 +1560,8 @@ void FrameBufferList::renderBuffer()
 	const s32 hEnd = _SHIFTR(*REG.VI_H_START, 0, 10);
 	const s32 hx1 = max(0, h0 + 640 - hEnd + static_cast<s32>(rdpRes.vi_maxhpass));
 	//const s32 hx1 = hx0 + rdpRes.vi_hres;
-	dstX0 = static_cast<s32>((hx0 * viScaleX + f32(XoffsetRight)) * dstScaleX);
-	dstX1 = static_cast<s32>(m_overscan.getDrawingWidth()) - static_cast<s32>(hx1 * viScaleX * dstScaleX);
+	dstX0 = 0;
+    dstX1 = static_cast<s32>(m_overscan.getBufferWidth());
 
 	const f32 srcScaleY = pFilteredBuffer->m_scale;
 	CachedTexture * pBufferTexture = pFilteredBuffer->m_pTexture;
@@ -1579,9 +1579,9 @@ void FrameBufferList::renderBuffer()
 	const s32 hOffset = m_overscan.getHOffset();
 	const s32 vOffset = m_overscan.getVOffset();
 	s32 dstCoord[4] = { dstX0 + hOffset,
-						vOffset + static_cast<s32>(dstY0*dstScaleY),
-						hOffset + dstX1,
-						vOffset + static_cast<s32>(dstY1*dstScaleY) };
+                        vOffset,
+                        hOffset + dstX1,
+                        vOffset + static_cast<s32>(m_overscan.getBufferHeight()) };
 
 	ObjectHandle readBuffer;
 
