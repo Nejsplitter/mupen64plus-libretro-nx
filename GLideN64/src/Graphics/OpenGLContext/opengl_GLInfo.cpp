@@ -202,7 +202,13 @@ void GLInfo::init() {
 	eglImage = (Utils::isEGLExtensionSupported("EGL_KHR_image_base") || Utils::isEGLExtensionSupported("EGL_KHR_image"));
 	ext_fetch_arm =  Utils::isExtensionSupported(*this, "GL_ARM_shader_framebuffer_fetch") && !ext_fetch;
 
-	dual_source_blending = false;
+    dual_source_blending = false;
+	if (!dual_source_blending) {
+		ext_fetch = false;
+		ext_fetch_arm = false;
+		n64DepthWithFbFetch = false;
+	}
+	
 	anisotropic_filtering = false;
 
 #ifdef OS_ANDROID
