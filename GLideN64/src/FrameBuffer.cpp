@@ -1578,11 +1578,13 @@ void FrameBufferList::renderBuffer()
 
 	const s32 hOffset = m_overscan.getHOffset();
 	const s32 vOffset = m_overscan.getVOffset();
-	s32 dstCoord[4] = { dstX0 + hOffset,
-						vOffset + static_cast<s32>(dstY0*dstScaleY),
-						hOffset + dstX1,
-						vOffset + static_cast<s32>(dstY1*dstScaleY) };
-
+	s32 dstCoord[4];
+	
+    dstCoord[0] = hOffset;
+    dstCoord[1] = vOffset;
+    dstCoord[2] = hOffset + static_cast<s32>(m_overscan.getBufferWidth());
+    dstCoord[3] = vOffset + static_cast<s32>(m_overscan.getBufferHeight());
+	
 	ObjectHandle readBuffer;
 
 	if (pFilteredBuffer->m_pTexture->frameBufferTexture == CachedTexture::fbMultiSample) {
