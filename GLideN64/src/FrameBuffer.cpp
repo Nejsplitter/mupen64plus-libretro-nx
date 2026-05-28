@@ -1090,7 +1090,7 @@ void FrameBufferList::_renderScreenSizeBuffer()
 	const u32 wndHeightOffset = wnd.getHeightOffset();
 	const s32 hOffset = (screenWidth - wndWidth) / 2;
 	const s32 vOffset = (screenHeight - wndHeight) / 2 + wndHeightOffset;
-	s32 dstCoord[4] = { hOffset, vOffset, hOffset + static_cast<s32>(wndWidth), vOffset + static_cast<s32>(wndHeight) };
+	s32 dstCoord[4] = { 0, 0, static_cast<s32>(wndWidth), static_cast<s32>(wndHeight) };
 
 	gfxContext.bindFramebuffer(bufferTarget::DRAW_FRAMEBUFFER, ObjectHandle::defaultFramebuffer);
 
@@ -1576,13 +1576,11 @@ void FrameBufferList::renderBuffer()
 		return;
 	}
 
+    const u32 wndWidth = wnd.getWidth();
+	const u32 wndHeight = wnd.getHeight();
 	const s32 hOffset = m_overscan.getHOffset();
 	const s32 vOffset = m_overscan.getVOffset();
-	s32 dstCoord[4] = { dstX0 + hOffset,
-						vOffset + static_cast<s32>(dstY0*dstScaleY),
-						hOffset + dstX1,
-						vOffset + static_cast<s32>(dstY1*dstScaleY) };
-
+	s32 dstCoord[4] = { 0, 0, static_cast<s32>(wndWidth), static_cast<s32>(wndHeight) };
 	ObjectHandle readBuffer;
 
 	if (pFilteredBuffer->m_pTexture->frameBufferTexture == CachedTexture::fbMultiSample) {
