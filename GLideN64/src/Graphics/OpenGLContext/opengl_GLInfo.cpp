@@ -215,7 +215,7 @@ void GLInfo::init() {
 		n64DepthWithFbFetch = false;
 	}
 
-	anisotropic_filtering = Utils::isExtensionSupported(*this, "GL_EXT_texture_filter_anisotropic");
+	anisotropic_filtering = false;
 
 #ifdef OS_ANDROID
 	eglImage = eglImage &&
