@@ -313,7 +313,7 @@ static void inputGetKeys_reuse(int16_t analogX, int16_t analogY, int Control, BU
 
       cardinalMax   = 85.0;
       diagonalMax   = 69.0;
-      innerDeadzone = 7.0;
+      innerDeadzone = 15.0;
 
       innerDeadzone += (float)astick_deadzone / ASTICK_MAX / 0.01f;
       
