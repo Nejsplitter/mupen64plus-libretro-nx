@@ -672,7 +672,8 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
     if (current_rdp_type == RDP_PLUGIN_PARALLEL)
         parallel_get_geometry(&info->geometry);
 #endif
-    info->timing.fps = vi_expected_refresh_rate_from_tv_standard(ROM_PARAMS.systemtype);
+    info->timing.fps = !strcmp(ROM_PARAMS.headername, "GoldenEye X")
+		? 60 : vi_expected_refresh_rate_from_tv_standard(ROM_PARAMS.systemtype);
     info->timing.sample_rate = 44100.0;
 }
 
