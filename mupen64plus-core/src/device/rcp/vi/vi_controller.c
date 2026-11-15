@@ -30,6 +30,7 @@
 #include "main/main.h"
 #include "plugin/plugin.h"
 #include <mupen64plus-next_common.h>
+#include "main/rom.h"
 
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
@@ -52,9 +53,9 @@ unsigned int vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_stand
     case SYSTEM_PAL:
         return 50;
     case SYSTEM_NTSC:
-    case SYSTEM_MPAL:
-    default:
-        return 60;
+	case SYSTEM_MPAL:
+	default:
+		return !strcmp(ROM_PARAMS.headername, "GoldenEye X") ? 120 : 60;
     }
 }
 
