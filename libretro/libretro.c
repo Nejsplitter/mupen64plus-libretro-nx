@@ -59,6 +59,8 @@
 
 #include "audio_plugin.h"
 
+int enable_120hz_vi = 0;
+
 #ifndef PRESCALE_WIDTH
 #define PRESCALE_WIDTH  640
 #endif
@@ -672,7 +674,7 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
     if (current_rdp_type == RDP_PLUGIN_PARALLEL)
         parallel_get_geometry(&info->geometry);
 #endif
-    info->timing.fps = vi_expected_refresh_rate_from_tv_standard(ROM_PARAMS.systemtype);
+    info->timing.fps = 60.0;
     info->timing.sample_rate = 44100.0;
 }
 
@@ -932,6 +934,10 @@ static void update_variables(bool startup)
 
     if (startup)
     {
+       var.key = CORE_NAME "-120hz-vi";
+       var.value = NULL;
+       enable_120hz_vi = environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value && !strcmp(var.value, "True");
+		
        bool save_state_in_background = true;
        //environ_cb(RETRO_ENVIRONMENT_SET_SAVE_STATE_IN_BACKGROUND, &save_state_in_background);
 
