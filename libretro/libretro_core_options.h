@@ -1535,6 +1535,20 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "0"
     },
     {
+        CORE_NAME "-120hz-vi",
+        "120Hz VI Mode",
+        NULL,
+        "Enable 120Hz internal VI timing. Restart required.",
+        NULL,
+        NULL,
+        {
+            {"False", NULL},
+            {"True", NULL},
+            {NULL, NULL},
+        },
+        "False"
+    },
+    {
         CORE_NAME "-astick-deadzone",
         "Analog Deadzone (percent)",
         NULL,
