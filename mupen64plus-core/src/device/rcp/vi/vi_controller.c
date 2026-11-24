@@ -31,6 +31,8 @@
 #include "plugin/plugin.h"
 #include <mupen64plus-next_common.h>
 
+extern int enable_120hz_vi;
+
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
     switch(tv_standard)
@@ -54,7 +56,7 @@ unsigned int vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_stand
     case SYSTEM_NTSC:
     case SYSTEM_MPAL:
     default:
-        return 60;
+        return enable_120hz_vi ? 120 : 60;
     }
 }
 
